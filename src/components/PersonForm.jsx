@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_PERSON, ALL_PERSONS } from "../graphql/queries";
 
-const PersonForm = ({ errorFunction }) => {
+const PersonForm = ({ setError }) => {
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
     const [street, setStreet] = useState('')
@@ -12,7 +12,7 @@ const PersonForm = ({ errorFunction }) => {
       refetchQueries: [ { query: ALL_PERSONS } ],
       onError: (error) => {
         const messages = error.graphQLErrors.map(e => e.message).join('\n')
-        errorFunction(messages)
+        setError(messages)
       }
     })
   

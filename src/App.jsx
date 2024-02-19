@@ -4,6 +4,7 @@ import { ALL_PERSONS } from "./graphql/queries";
 import Persons from "./components/Persons";
 import PersonForm from "./components/PersonForm";
 import ErrorNotify from "./components/ErrorNotify";
+import PhoneForm from "./components/PhoneForm";
 
 const App = () => {
   const { loading, error, data } = useQuery(ALL_PERSONS);
@@ -28,7 +29,8 @@ const App = () => {
     <>
       <ErrorNotify errorMessage={errorMessage} />
       <Persons persons={data.allPersons} />
-      <PersonForm errorFunction={notification}/>
+      <PersonForm setError={notification}/>
+      <PhoneForm setError={notification}/>
     </>
   );
 };
